@@ -1,0 +1,82 @@
+{
+  "name": "novita_nsfw_image_generator",
+  "version": "1.0.0",
+  "description": "Generate NSFW images using Novita.ai API with various models and customization options",
+  "author": "OpenClaw Community",
+  "platform": "openclaw",
+  "category": "image_generation",
+  "tags": ["nsfw", "image", "ai", "novita", "generation", "adult"],
+  "rating": "adult",
+  "permissions": ["network", "storage"],
+  "entry_point": "main.py",
+  "config": {
+    "novita_api_key": {
+      "type": "string",
+      "required": true,
+      "description": "Your Novita.ai API key"
+    },
+    "default_model": {
+      "type": "string",
+      "default": "realisticVisionV51_v51VAE_97547.safetensors",
+      "description": "Default Stable Diffusion model checkpoint"
+    },
+    "default_sampler": {
+      "type": "string",
+      "default": "DPM++ 2M Karras",
+      "description": "Default sampling method"
+    },
+    "output_directory": {
+      "type": "string",
+      "default": "./outputs",
+      "description": "Directory to save generated images"
+    }
+  },
+  "commands": [
+    {
+      "name": "generate",
+      "description": "Generate an NSFW image from a text prompt",
+      "parameters": {
+        "prompt": {"type": "string", "required": true},
+        "negative_prompt": {"type": "string", "required": false},
+        "width": {"type": "integer", "default": 512},
+        "height": {"type": "integer", "default": 768},
+        "steps": {"type": "integer", "default": 25},
+        "cfg_scale": {"type": "number", "default": 7.0},
+        "seed": {"type": "integer", "default": -1},
+        "model": {"type": "string", "required": false},
+        "sampler": {"type": "string", "required": false},
+        "lora": {"type": "string", "required": false},
+        "batch_size": {"type": "integer", "default": 1}
+      }
+    },
+    {
+      "name": "img2img",
+      "description": "Generate NSFW image from an existing image + prompt",
+      "parameters": {
+        "image_url": {"type": "string", "required": true},
+        "prompt": {"type": "string", "required": true},
+        "negative_prompt": {"type": "string", "required": false},
+        "strength": {"type": "number", "default": 0.7},
+        "steps": {"type": "integer", "default": 25},
+        "cfg_scale": {"type": "number", "default": 7.0},
+        "seed": {"type": "integer", "default": -1}
+      }
+    },
+    {
+      "name": "list_models",
+      "description": "List available NSFW-capable models"
+    },
+    {
+      "name": "list_loras",
+      "description": "List available LoRA models"
+    },
+    {
+      "name": "upscale",
+      "description": "Upscale a generated image",
+      "parameters": {
+        "image_url": {"type": "string", "required": true},
+        "scale": {"type": "number", "default": 2.0}
+      }
+    }
+  ]
+}
