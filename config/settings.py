@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 from typing import Optional
 
 
-NOVITA_API_BASE = "https://api.novita.ai/v3"
+NOVITA_API_BASE = "https://api.novita.ai/v3/async/"
 NOVITA_API_V2_BASE = "https://api.novita.ai/v2"
 
 # Popular NSFW-capable models on Novita.ai
